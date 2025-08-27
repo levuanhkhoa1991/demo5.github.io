@@ -113,64 +113,70 @@ export default function HomePage() {
     {
       id: 1,
       title: "Toyota",
-      image: "/img/logo9.png?height=200&width=200",
+      image: "/img/logo1.png?height=200&width=200",
     },
     {
       id: 2,
       title: "BMW",
-      image: "/img/logo10.png?height=200&width=200",
+      image: "/img/logo2.png?height=200&width=200",
     },
     {
       id: 3,
       title: "Mercedes",
-      image: "/img/logo11.png?height=200&width=200",
+      image: "/img/logo3.png?height=200&width=200",
     },
     {
       id: 4,
       title: "Audi",
-      image: "/img/logo12.png?height=200&width=200",
+      image: "/img/logo4.png?height=200&width=200",
     },
     {
       id: 5,
       title: "Tesla",
-      image: "/img/logo13.png?height=200&width=200",
+      image: "/img/logo1.png?height=200&width=200",
     },
     {
       id: 6,
       title: "Ford",
-      image: "/img/logo14.png?height=200&width=200",
+      image: "/img/logo2.png?height=200&width=200",
     },
     {
       id: 7,
       title: "Honda",
-      image: "/img/logo15.png?height=200&width=200",
+      image: "/img/logo3.png?height=200&width=200",
     },
   ]
 
   const testimonialSlides = [
     {
       id: 1,
-      title: "Amazing Car Buying Experience!",
-      image: "/placeholder.svg?height=100&width=100",
-      description: "Professional service and found the perfect car for my family. Highly recommended!",
+      title: "New Vehicles",
+      image: "/img/img1.png?height=100&width=100",
+      description: "The car exceeded my expectations. Great financing options and transparent pricing.",
     },
     {
       id: 2,
       title: "Quality Vehicles",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/img/img2.png?height=100&width=100",
       description: "The car exceeded my expectations. Great financing options and transparent pricing.",
     },
     {
       id: 3,
       title: "Excellent Service",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/img/img3.png?height=100&width=100",
       description: "From test drive to delivery, everything was smooth and professional.",
     },
     {
       id: 4,
       title: "Best Car Deals",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "/img/img4.png?height=100&width=100",
       description: "Found amazing deals and saved thousands. Love my new car!",
+    },
+    {
+      id: 5,
+      title: "New Vehicles",
+      image: "/img/img1.png?height=100&width=100",
+      description: "The car exceeded my expectations. Great financing options and transparent pricing.",
     },
   ]
 
@@ -416,7 +422,7 @@ export default function HomePage() {
             <div className="gsap-fade-up">
               <SwiperSlider
                 items={brandSlides}
-                slidesPerView={5}
+                slidesPerView={6}
                 autoplay={true}
                 showNavigation={false}
                 showPagination={false}
@@ -436,7 +442,7 @@ export default function HomePage() {
             <div className="gsap-fade-up">
               <SwiperSlider
                 items={testimonialSlides}
-                slidesPerView={3}
+                slidesPerView={5}
                 autoplay={true}
                 showNavigation={true}
                 showPagination={true}
@@ -451,7 +457,7 @@ export default function HomePage() {
             <div className="max-w-2xl mx-auto space-y-6 gsap-scale">
               <h2 className="text-3xl md:text-4xl font-bold font-heading text-white">Subscribe for Car Deals</h2>
               <p className="text-white/90 text-lg">Get notified about new arrivals and exclusive automotive offers</p>
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto items-center">
                 <input
                   type="email"
                   placeholder="Enter your email"

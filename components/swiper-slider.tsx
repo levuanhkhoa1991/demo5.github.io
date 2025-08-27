@@ -66,11 +66,11 @@ export default function SwiperSlider({
       >
         {items.map((item) => (
           <SwiperSlide key={item.id}>
-            <Card className="group cursor-pointer hover:shadow-xl transition-all duration-300 border-animation">
+            <Card className="group cursor-pointer hover:shadow-xl transition-all duration-300 border-animation p-0">
               <CardContent className="p-0">
-                <div className="relative overflow-hidden rounded-t-lg">
+                <div className="relative overflow-hidden rounded-t-lg ">
                   <img
-                    src={item.image || "/placeholder.svg"}
+                    src={item.image || "/img/img1.png"}
                     alt={item.title}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                   />
@@ -81,9 +81,9 @@ export default function SwiperSlider({
                   )}
                 </div>
                 <div className="p-4 space-y-2">
-                  <h3 className="font-semibold font-heading line-clamp-2">{item.title}</h3>
-                  {item.description && <p className="text-sm text-muted-foreground line-clamp-2">{item.description}</p>}
-                  {item.price && <p className="text-lg font-bold text-primary">{item.price}</p>}
+                  <h3 className="font-semibold font-heading line-clamp-2 text-black">{item.title}</h3>
+                  {item.description && <p className="text-sm text-muted-foreground line-clamp-2 text-black">{item.description}</p>}
+                  {item.price && <p className="text-lg font-bold text-primary text-black">{item.price}</p>}
                 </div>
               </CardContent>
             </Card>
