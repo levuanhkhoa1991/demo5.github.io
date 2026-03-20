@@ -2,9 +2,9 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Star, Truck, Headphones, ArrowRight, Heart, Car, Zap, Award } from "lucide-react"
+import { Truck, Headphones, ArrowRight, Car, Zap, Award } from "lucide-react"
 import SwiperSlider from "@/components/swiper-slider"
+import FeaturedProducts from "@/components/featured-products"
 import Link from "next/link"
 
 export default function HomePage() {
@@ -346,59 +346,7 @@ export default function HomePage() {
               <p className="text-muted-foreground text-lg">Our most popular and best-selling cars</p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 ">
-              {featuredProducts.map((product, index) => (
-                <Card
-                  key={product.id}
-                  className="group cursor-pointer hover:shadow-xl transition-all duration-300 border-animation gsap-fade-up pt-0"
-                >
-                  <CardContent className="p-0">
-                    <div className="relative overflow-hidden rounded-t-lg">
-                      <img
-                        src={product.image || "/placeholder.svg"}
-                        alt={product.name}
-                        className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                      <Badge className="absolute top-3 left-3 bg-secondary bg-black border border-white">{product.badge}</Badge>
-                      <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Button size="sm" variant="secondary" className="w-8 h-8 p-0">
-                          <Heart className="w-4 h-4" />
-                        </Button>
-                      </div>
-                    </div>
-
-                    <div className="p-4 space-y-3">
-                      <h3 className="font-semibold font-heading line-clamp-2">{product.name}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {product.brand} • {product.type}
-                      </p>
-
-                      <div className="flex items-center gap-2">
-                        <div className="flex items-center">
-                          {[...Array(5)].map((_, i) => (
-                            <Star
-                              key={i}
-                              className={`w-4 h-4 ${i < Math.floor(product.rating) ? "text-yellow-400 fill-current" : "text-gray-300"}`}
-                            />
-                          ))}
-                        </div>
-                        <span className="text-sm text-muted-foreground">({product.reviews})</span>
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <span className="text-lg font-bold text-primary">{product.price}</span>
-                        <span className="text-sm text-muted-foreground line-through">{product.originalPrice}</span>
-                      </div>
-
-                      <Button className="w-full diagonal-hover">
-                        <Car className="w-4 h-4 mr-2" />
-                        View Details
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <FeaturedProducts products={featuredProducts} />
 
             <div className="text-center mt-12 gsap-fade-up">
               <Button variant="outline" size="lg" className="diagonal-hover bg-transparent">

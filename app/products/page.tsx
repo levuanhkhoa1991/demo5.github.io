@@ -12,6 +12,7 @@ import { Star, Heart, ShoppingCart, Filter, Grid, List, Search } from "lucide-re
 import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { useCart } from "@/contexts/cart-context"
+import CarDetailModal, { type CarProduct } from "@/components/car-detail-modal"
 
 interface Product {
   id: string
@@ -35,6 +36,7 @@ export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [sortBy, setSortBy] = useState("name")
   const [priceRange, setPriceRange] = useState([0, 10000000])
+  const [selectedProduct, setSelectedProduct] = useState<CarProduct | null>(null)
   const { addItem } = useCart()
 
   useEffect(() => {
@@ -161,6 +163,20 @@ export default function ProductsPage() {
       price: product.price,
       originalPrice: product.originalPrice,
       image: product.image,
+    })
+  }
+
+  const openModal = (product: Product) => {
+    setSelectedProduct({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      originalPrice: product.originalPrice,
+      image: product.image,
+      rating: product.rating,
+      reviews: product.reviews,
+      badge: product.badge,
+      description: product.description,
     })
   }
 
@@ -311,6 +327,7 @@ export default function ProductsPage() {
                     className={`group cursor-pointer hover:shadow-xl transition-all duration-300 border-animation ${
                       viewMode === "list" ? "flex" : ""
                     }`}
+                    onClick={() => openModal(product)}
                   >
                     <CardContent className={`p-0 ${viewMode === "list" ? "flex w-full" : ""}`}>
                       <div className={`relative overflow-hidden ${viewMode === "list" ? "w-48 h-48" : "rounded-t-lg"}`}>
@@ -323,16 +340,19 @@ export default function ProductsPage() {
                         />
                         {product.badge && <Badge className="absolute top-3 left-3 bg-secondary">{product.badge}</Badge>}
                         <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <Button size="sm" variant="secondary" className="w-8 h-8 p-0">
+                          <Button
+                            size="sm"
+                            variant="secondary"
+                            className="w-8 h-8 p-0"
+                            onClick={(e) => e.stopPropagation()}
+                          >
                             <Heart className="w-4 h-4" />
                           </Button>
                         </div>
                       </div>
 
                       <div className={`p-4 space-y-3 ${viewMode === "list" ? "flex-1" : ""}`}>
-                        <Link href={`/products/${product.id}`}>
-                          <h3 className="font-semibold font-heading line-clamp-2 hover-underline">{product.name}</h3>
-                        </Link>
+                        <h3 className="font-semibold font-heading line-clamp-2">{product.name}</h3>
 
                         <div className="flex items-center gap-2">
                           <div className="flex items-center">
@@ -361,9 +381,12 @@ export default function ProductsPage() {
                           <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
                         )}
 
-                        <Button className="w-full diagonal-hover" onClick={() => handleAddToCart(product)}>
+                        <Button
+                          className="w-full diagonal-hover"
+                          onClick={(e) => { e.stopPropagation(); openModal(product) }}
+                        >
                           <ShoppingCart className="w-4 h-4 mr-2" />
-                          Thêm vào giỏ
+                          Xem & Mua
                         </Button>
                       </div>
                     </CardContent>
@@ -376,6 +399,12 @@ export default function ProductsPage() {
       </main>
 
       <Footer />
+
+      <CarDetailModal
+        product={selectedProduct}
+        open={!!selectedProduct}
+        onClose={() => setSelectedProduct(null)}
+      />
     </div>
   )
 }
